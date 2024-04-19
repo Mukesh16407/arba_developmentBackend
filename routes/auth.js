@@ -8,10 +8,11 @@ const {
   updateProfile,
   logout,
 } = require("../controllers/authController");
+const upload = require("../multerConfig/storageConfig");
 
 const { isAuthenticatedUser } = require("../middleWares/auth");
 
-router.route("/register").post(registerUser);
+router.route("/register").post(upload.single("user_profile"), registerUser);
 router.route("/login").post(loginUser);
 router.route("/logout").get(logout);
 
