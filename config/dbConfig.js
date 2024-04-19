@@ -1,13 +1,19 @@
 const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
-mongoose.connect(process.env.MONGODB_DATABASE);
+require("dotenv").config();
+mongoose.connect(process.env.MONGODB_DATABASE, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,
+});
 
 const connection = mongoose.connection;
 
+//verify connection
 connection.on("connected", () => {
-  console.log("Mongo DB Connetion Successfull");
+  console.log("Mongo DB Connected Successfull");
 });
+//verify Connection error
 
-connection.on("error", (err) => {
-  console.log("Mongo DB Connetion Failed");
+connection.on("error", () => {
+  console.log("Mongo Db Connection Error");
 });
