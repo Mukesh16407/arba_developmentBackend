@@ -25,6 +25,11 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   };
 
   const token = createActivationToken(user);
+  res.status(200).json({
+    success: true,
+    message: "User registered successfully. Activation token generated.",
+    token: token,
+  });
 });
 
 // Login User  =>  /api/v1/login
