@@ -15,8 +15,12 @@ app.use(cookieParser());
 app.use(fileUpload());
 
 const auth = require("./routes/auth");
+const category = require("./routes/category");
+const product = require("./routes/product");
 
 app.use("/api/v1", auth);
+app.use("/api/v1", category);
+app.use("/api/v1", product);
 
 const port = process.env.PORT || 5000;
 
